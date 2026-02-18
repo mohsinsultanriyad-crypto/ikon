@@ -7,13 +7,14 @@
  * This key is injected via environment in standard production deployments.
  */
 
+
 const CLUSTER_NAME = "Cluster0";
 const DATABASE_NAME = "fastep_work";
 const DATA_SOURCE = "mongodb-atlas";
-const BASE_URL = "https://data.mongodb-api.com/app/data-backend/endpoint/data/v1";
+const BASE_URL = import.meta.env.VITE_API_URL || "https://data.mongodb-api.com/app/data-backend/endpoint/data/v1";
 
-// NOTE: Set your API Key here for persistent cloud storage.
-const API_KEY = ""; 
+// Use API Key from environment variable for persistent cloud storage.
+const API_KEY = import.meta.env.VITE_API_KEY || "";
 
 async function mongoRequest(action: string, collection: string, body: any) {
   if (!API_KEY) {
